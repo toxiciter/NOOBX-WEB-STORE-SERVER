@@ -98,7 +98,7 @@ app.post('/upload-file', upload.single('media'), async (req, res) => {
 
     const { valid, privacy } = req.body;
     const originalExt = path.extname(req.file.originalname) || '.bin';
-    const filename = `hasan_${crypto.randomBytes(6).toString('hex')}${originalExt}`;
+    const filename = `noobx_${req.file.originalname}` || `noobxHasan_${crypto.randomBytes(6).toString('hex')}${originalExt}`;
 
     const contentType = mime.lookup(req.file.originalname) || 'application/octet-stream';
 
@@ -142,7 +142,7 @@ app.get('/upload-url', async (req, res) => {
 
   try {
     const ext = path.extname(new URL(url).pathname) || url.split("/").pop() || '.bin';
-    const filename = `hasan_${crypto.randomBytes(6).toString('hex')}${ext}`;
+    const filename = `noobx_${new URL(url).pathname ? new URL(url).pathname : url.split("/").pop()}` || `hasan_${crypto.randomBytes(6).toString('hex')}${ext}`;
 
     const response = await axios.get(url, {
       responseType: 'stream',
